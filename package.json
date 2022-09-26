@@ -4,9 +4,13 @@
   "description": "A simple Reveal.js server with Pug and SCSS",
   "main": "gulpfile.js",
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "start": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "resolutions": {
+    "glob-parent": "^6.0.1"
+ },
   "author": "Martijn De Jongh",
   "license": "MIT",
   "devDependencies": {
