@@ -12,7 +12,7 @@ This project will install Reveal.js as a dependency, and then automatically copy
   "reveal.js": "^4.3.1"
 }
 ```
-This way, the presentation will also work offline or from the filesystem.
+This way, the presentation will also work offline, from a server without node, or from the filesystem.
 
 Any other dependency in the `dependencies` object in the `package.json` file will be treated the same: it will be copied to the assets folder. 
 
@@ -28,13 +28,14 @@ Whenever you want to add packages that only help during the development process,
 
 ## Pug setup
 
-This starter project uses Pug to be able to use a base template, and to include partials, like a `head` and a block of scripts that is included at the end of the HTML.
+This starter project uses Pug to be able to use templates, and to include partials, like a `head` and a block of scripts that is included at the end of the HTML.
 
 ```
 .
 ├── build                       # Compiled files
 ├── src                         # Source folder
 │   ├── assets                  # Assets for the presentation
+│       ├── img                 # Images
 │       ├── js                  # Javascript files
 │       ├── scss                # Scss files to be compiled into CSS
 │           ├──  styles.scss    # Main Scss file
@@ -65,6 +66,35 @@ Pug uses indents to separate levels in HTML. Make sure that you use the same way
 
 You can learn more at the Pug website: [pugjs.org](https://pugjs.org/api/getting-started.html)  or other resources like [www.educative.io](https://www.educative.io/answers/what-is-pug-syntax).
 
+#### But does Reveal not have Markdown support?
+
+It does. Markdown is indeed a very simple markup language that compiles to HTML, but if you want some more influence on the layout or specific classes or attributes, Pug is more powerful. 
+
+So instead of using Markdown and trying to add attributes to your elements like any of these solutions:
+
+```
+- Item 1 <!-- .element: class="fragment" data-fragment-index="3" -->
+- Item 2 <!-- class="fragment" data-fragment-index="2" -->
+- Item 3 <!-- .fragment data-fragment-index="1" -->
+```
+
+you write it in Pug like this:
+
+```
+ul
+	li.fragment(data-fragment-index="3") Item 1
+	li.fragment(data-fragment-index="2") Item 2
+	li.fragment(data-fragment-index="1") Item 3
+```
+
+or like this:
+
+```
+ul
+	- mylist = [1,2,3]
+	each nr in mylist
+		li.fragment(data-fragment-index=(mylist.length - nr)) Bullet #{nr}
+```
 
 ## Scss
 
@@ -75,7 +105,7 @@ In the `assets` folder is another folder called `scss`. Any scss files in that f
 
 As mentioned before: any other dependency in the `dependencies` object in the `package.json` file will be treated the same: it will be copied to the assets folder. 
 
-For example, to add the Appearance plugin, change the package.json file like this:
+For example, to add the [Appearance](https://github.com/Martinomagnifico/reveal.js-appearance) plugin, install it with `npm install reveal.js-appearance`. The package.json file will then look like this:
 
 ```javascript
 "dependencies": {
@@ -84,7 +114,7 @@ For example, to add the Appearance plugin, change the package.json file like thi
 }
 ```
 
-That also means that you should add that to the `scripts` block in your index.pug file, like this:
+The Appearance package will then be copied to the assets folder whenever you use `npm start`. But to be able to use it, you should add it to the `scripts` block in your index.pug file, and register it in the Reveal config like this:
 
 ```pug
 block append scripts
@@ -115,6 +145,10 @@ and the plugin then adds a base class like this:
 ```html
 <li class="animate__fadeInDown animate__animated">Bullet</li>
 ```
+
+## Other assets
+
+This project also automatically copies images from the source folder to the build folder.
 
 
 ## Like it?
