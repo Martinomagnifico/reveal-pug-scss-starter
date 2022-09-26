@@ -1,0 +1,17 @@
+extends /templates/layouts/_base.pug
+
+block content
+	.reveal
+		block beforeslides
+		.slides
+			block slides
+		block afterslides
+
+block append styles
+	link(rel='stylesheet', href=`assets/js/reveal.js/dist/reset.css`)
+	link(rel='stylesheet', href=`assets/js/reveal.js/dist/reveal.css`)
+	- let theme = page.theme ? page.theme : 'black';
+	link(rel='stylesheet', href=`assets/js/reveal.js/dist/theme/${theme}.css`)
+
+block append scripts
+	script(src="assets/js/reveal.js/dist/reveal.js")

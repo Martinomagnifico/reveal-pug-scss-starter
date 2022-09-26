@@ -1,0 +1,22 @@
+extends /templates/layouts/_reveal.pug
+
+append variables
+	- page.theme = "black"
+
+append styles
+	link(rel='stylesheet', href=`assets/css/styles.css`)
+
+block slides
+	include _slides.pug
+
+
+block append scripts
+	script.
+		const deck = document.querySelector(".reveal");
+		let revealdeck = new Reveal(deck);
+			revealdeck.initialize({
+			history: false,
+			overview: false,
+			center: true,
+			controlsTutorial: false
+		});

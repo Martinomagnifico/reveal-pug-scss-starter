@@ -1,0 +1,10 @@
+include /templates/includes/_mixins
+
+block variables
+	- let page = {title: "The title", language: "en", author: "Authorname"}
+
++html
+	include /templates/includes/_head
+	body
+		block content
+		include /templates/includes/_scripts
