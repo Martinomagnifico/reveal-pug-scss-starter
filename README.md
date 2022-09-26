@@ -1,4 +1,4 @@
-# Reveal-pug-scss-starter
+# Reveal Pug Scss Starter kit
 
 This GitHub repo is a quick starter to make a [Reveal.js](https://revealjs.com) presentation with support for Pug and Scss. Pug is a preprocessor for HTML, Scss is a preprocessor for CSS.
 
