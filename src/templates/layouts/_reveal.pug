@@ -8,10 +8,10 @@ block content
 		block afterslides
 
 block append styles
-	link(rel='stylesheet', href=`assets/js/reveal.js/dist/reset.css`)
-	link(rel='stylesheet', href=`assets/js/reveal.js/dist/reveal.css`)
+	link(rel='stylesheet', href=`assets/libs/reveal.js/dist/reset.css`)
+	link(rel='stylesheet', href=`assets/libs/reveal.js/dist/reveal.css`)
 	- let theme = page.theme ? page.theme : 'black';
-	link(rel='stylesheet', href=`assets/js/reveal.js/dist/theme/${theme}.css`)
+	link(rel='stylesheet', href=`assets/libs/reveal.js/dist/theme/${theme}.css`)
 
 block append scripts
-	script(src="assets/js/reveal.js/dist/reveal.js")
+	script(src="assets/libs/reveal.js/dist/reveal.js")

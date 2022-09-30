@@ -12,6 +12,7 @@ const { src, dest, watch, series, parallel } = require('gulp'),
 
 const buildfolder = "./build"
 const sourcefolder = "./src";
+const dependencyfolder = `${buildfolder}/assets/libs`
 
 const clean = function (callback) {
 	return rimraf(buildfolder, callback)
@@ -28,7 +29,7 @@ const copydeps = function () {
 	}
 	let tasks = deps.map(function(dependency){
 		return src([`node_modules/${dependency}/**`])
-		.pipe(dest(`${buildfolder}/assets/js/${dependency}`) )
+		.pipe(dest(`${dependencyfolder}/${dependency}`) )
 	});
 	return merge(tasks);
 };
