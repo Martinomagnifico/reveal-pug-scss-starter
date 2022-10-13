@@ -36,7 +36,7 @@ const copydeps = function () {
 
 const styles = function () {
 	return (
-		src(`${sourcefolder}/assets/scss/styles.scss`)
+		src(`${sourcefolder}/assets/scss/*.scss`)
 		.pipe(plumber())
 		.pipe(sass())
 		.pipe(autoprefixer())
@@ -69,8 +69,15 @@ const views = function () {
 
 const img = function () {
 	return (
-		src(`${sourcefolder}/assets/img/*.{gif,jpg,png,svg}`)
-		.pipe(dest(`${buildfolder}/assets//img/` ))
+		src(`${sourcefolder}/assets/img/**/*.{gif,jpg,png,svg}`)
+		.pipe(dest(`${buildfolder}/assets/img/` ))
+	)
+};
+
+const fonts = function () {
+	return (
+		src(`${sourcefolder}/assets/fonts/**/*.{eot,svg,woff,ttf,woff2}`)
+		.pipe(dest(`${buildfolder}/assets/fonts/` ))
 	)
 };
 
@@ -94,6 +101,6 @@ const watchtask = function (done) {
 	done();
 }
 
-const buildTask = parallel(copydeps, styles, scripts, views, img);
+const buildTask = parallel(copydeps, fonts, img, styles, scripts, views);
 
 exports.default = series(clean, buildTask, serve, watchtask);
