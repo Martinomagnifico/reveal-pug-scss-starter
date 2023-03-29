@@ -12,8 +12,10 @@
     "glob-parent": "^6.0.2"
   },
   "overrides": {
+    "decode-uri-component": "0.2.2",
     "chokidar": "3.5.3",
-    "glob-parent": "6.0.2"
+    "glob-parent": "6.0.2",
+    "glob-watcher": "^5.0.5"
   },
   "author": "Martijn De Jongh",
   "license": "MIT",
