@@ -1,7 +1,6 @@
 "use strict";
 
 const { src, dest, watch, series, parallel } = require('gulp'),
-		rimraf = require('rimraf'),
 		fs = require('fs'),
 		sass = require('gulp-sass')(require('sass')),
 		pug = require('gulp-pug'),
@@ -13,10 +12,6 @@ const { src, dest, watch, series, parallel } = require('gulp'),
 const buildfolder = "./build"
 const sourcefolder = "./src";
 const dependencyfolder = `${buildfolder}/assets/libs`
-
-const clean = function (callback) {
-	return rimraf(buildfolder, callback)
-};
 
 const copydeps = function () {
 	let deps = [];
@@ -103,4 +98,4 @@ const watchtask = function (done) {
 
 const buildTask = parallel(copydeps, fonts, img, styles, scripts, views);
 
-exports.default = series(clean, buildTask, serve, watchtask);
+exports.default = series(buildTask, serve, watchtask);
